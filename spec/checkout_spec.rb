@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Checkout do
 
-  let(:checkout) { Checkout.new(FruitTea.new, Strawberry.new) }
+  let(:checkout) { Checkout.new(FruitTea, Strawberry) }
 
   subject { checkout.total }
 

@@ -1,13 +1,15 @@
 # the price must always be in cents
 
 class Rule
-  def apply(items)
+  private_class_method :new
+
+  def self.apply(items)
     raise NoMethodError, "you should define the apply method"
   end
 end
 
 class FruitTea < Rule
-  def apply(items)
+  def self.apply(items)
     items.reduce(0) do |quantity, item|
       if item.code == 'FR' and (quantity += 1) == 2
         quantity = item.price = 0
@@ -22,7 +24,7 @@ class Strawberry < Rule
   QUANTITY = 3
   PRICE = 450
   
-  def apply(items)
+  def self.apply(items)
     if items.count{ |item| item.code == 'SR' } >= QUANTITY
       items.each{ |item| item.price = PRICE if item.code == 'SR' }
     end
@@ -31,7 +33,6 @@ class Strawberry < Rule
 end
 
 class Checkout
-
   Item = Struct.new(:code, :price)
 
   PRICES = {
