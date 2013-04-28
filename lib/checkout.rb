@@ -45,8 +45,8 @@ class Checkout
     @rules, @items = rules, []
   end
 
-  def scan(name)
-    @items << Item.new(name, PRICES[name])
+  def scan(code)
+    @items << Item.new(code, PRICES[code])
   end
 
   def total
