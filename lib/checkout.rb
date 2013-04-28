@@ -50,9 +50,8 @@ class Checkout
   end
 
   def total
-    @rules.reduce(@items) do |items, rule| 
-      rule.apply(items) 
-    end.map(&:price).inject(:+) / 100.0
+    @rules.reduce(@items){ |items, rule| rule.apply(items) }.
+      map(&:price).inject(:+) / 100.0
   end
 end
 
