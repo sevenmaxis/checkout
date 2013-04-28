@@ -41,8 +41,7 @@ class Checkout
   }
 
   def initialize(*rules)
-    @rules = rules
-    @items = []
+    @rules, @items = rules, []
   end
 
   def scan(name)
@@ -50,7 +49,7 @@ class Checkout
   end
 
   def total
-    @rules.reduce(@items){ |items, rule| rule.apply(items) }.
+    @rules.reduce(@items.dup){ |items, rule| rule.apply(items) }.
       map(&:price).inject(:+) / 100.0
   end
 end
