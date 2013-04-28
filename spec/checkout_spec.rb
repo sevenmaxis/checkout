@@ -7,27 +7,19 @@ describe Checkout do
   subject { checkout.total }
 
   it "FR, SR, FR, FR, CF total $22.45" do
-    checkout.scan('FR')
-    checkout.scan('SR')
-    checkout.scan('FR')
-    checkout.scan('FR')
-    checkout.scan('CF')
+    ['FR', 'SR', 'FR', 'FR', 'CF'].each { |code| checkout.scan(code) }
     
     subject.should == 22.45
   end
 
   it "FR, FR total $3.11" do
-    checkout.scan('FR')
-    checkout.scan('FR')
+    ['FR', 'FR'].each { |code| checkout.scan(code) }
     
     subject.should == 3.11
   end
 
   it "SR, SR, FR, SR total $16.61" do
-    checkout.scan('SR')
-    checkout.scan('SR')
-    checkout.scan('FR')
-    checkout.scan('SR')
+    ['SR', 'SR', 'FR', 'SR'].each { |code| checkout.scan(code) }
     
     subject.should == 16.61
   end
