@@ -23,8 +23,8 @@ class Strawberry < Rule
   PRICE = 450
   
   def apply(items)
-    if items.count{ |item| item.code == 'SR'} >= QUANTITY
-      items.each { |item| item.price = PRICE if item.code == 'SR' }
+    if items.count{ |item| item.code == 'SR' } >= QUANTITY
+      items.each{ |item| item.price = PRICE if item.code == 'SR' }
     end
     items
   end
