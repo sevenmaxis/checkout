@@ -8,11 +8,11 @@ end
 
 class FruitTea < Rule
   def apply(items)
-    quantity = 0
-    items.each do |item|
+    items.reduce(0) do |quantity, item|
       if item.code == 'FR' and (quantity += 1) == 2
         quantity = item.price = 0
       end
+      quantity
     end
     items
   end
